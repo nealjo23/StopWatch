@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var startButton = document.getElementById('start-btn');
     var stopButton = document.getElementById('stop-btn');
     var resetButton = document.getElementById('reset-btn');
+    var lapButton = document.getElementById('lap-btn');
+    var lapList = document.getElementById('lap-list');
 
     var timerInterval;
+    var lapCount = 1;
 
     startButton.addEventListener('click', function() {
         // Send AJAX request to start the stopwatch
@@ -38,7 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     // Reset the timer on the client-side
                     timerElement.textContent = '0.00';
+                    lapCount = 1;
+                    lapList.innerHTML = '';
                 }
             });
+    });
+
+    lapButton.addEventListener('click', function() {
+        var lapTime = timerElement.textContent;
+        var lapItem = document.createElement('li');
+        lapItem.textContent = 'Lap ' + lapCount + ': ' + lapTime;
+        lapList.appendChild(lapItem);
+        lapCount++;
     });
 });
