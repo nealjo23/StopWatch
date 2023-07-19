@@ -6,13 +6,15 @@
 </head>
 <body>
     <h1>Stopwatch App</h1>
-    <h2 id="timer">0.00</h2>
-    <button id="start-btn">Start</button>
-    <button id="stop-btn">Stop</button>
-    <button id="reset-btn">Reset</button>
-    <button id="lap-btn">Lap</button>
-
-    <div id="lap-times">
+    <div class="stopwatch-container">
+        <h2 class="stopwatch" id="timer">0.00</h2>
+        <button class="button start" id="start-stop-btn">Start</button>
+    </div>
+    <div>
+        <button class="button lap" id="lap-btn">Lap</button>
+        <button class="button reset" id="reset-btn">Reset</button>
+    </div>
+    <div class="lap-times">
         <h3>Lap Times:</h3>
         <ul id="lap-list"></ul>
     </div>

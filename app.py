@@ -6,6 +6,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/chat')
+def index():
+    return render_template('index.html')
+
 @app.route('/start')
 def start():
     # Implement stopwatch logic to start the timer
