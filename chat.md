@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 ```
 
-    
+
 
 In this updated version, the functionality of the combined start/stop button is handled by checking the `isRunning` variable. When the button is clicked, it checks if the stopwatch is currently running. If it is running, it sends an AJAX request to stop the stopwatch, clears the interval, updates the button's text and class, and sets `isRunning` to `false`. If the stopwatch is not running, it sends an AJAX request to start the stopwatch, starts the timer on the client-side, updates the button's text and class, and sets `isRunning` to `true`.
 

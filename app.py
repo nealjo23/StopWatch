@@ -1,14 +1,20 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
+from flaskext.markdown import Markdown
+from markdown import markdown
 
 app = Flask(__name__)
+Markdown(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/chat')
-def index():
-    return render_template('index.html')
+def chat():
+    with open('chat.md', 'r') as f:
+        content = f.read()
+        html_content = markdown(content)
+        return html_content
 
 @app.route('/start')
 def start():
