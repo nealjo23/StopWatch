@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var timerInterval;
     var lapCount = 1;
+    var previousTime = 0;
 
     startButton.addEventListener('click', function() {
         // Send AJAX request to start the stopwatch
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Reset the timer on the client-side
                     timerElement.textContent = '0.00';
                     lapCount = 1;
+                    previousTime = 0;
                     lapList.innerHTML = '';
                 }
             });
@@ -50,8 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
     lapButton.addEventListener('click', function() {
         var lapTime = timerElement.textContent;
         var lapItem = document.createElement('li');
-        lapItem.textContent = 'Lap ' + lapCount + ': ' + lapTime;
+
+        if (previousTime === 0) {
+            lapItem.textContent = 'Lap ' + lapCount + ': ' + lapTime;
+        } else {
+            var elapsedTime = parseFloat(lapTime) - previousTime;
+            lapItem.textContent = 'Lap ' + lapCount + ': ' + lapTime + ' (Elapsed: ' + elapsedTime.toFixed(2) + ')';
+        }
+
         lapList.appendChild(lapItem);
+        previousTime = parseFloat(lapTime);
         lapCount++;
     });
 });
